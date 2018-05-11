@@ -23,14 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
-        //try to get the toolbar and write a title to it.
-        mToolBar = (Toolbar) findViewById(R.id.main_page_toolbar);
-        if (mToolBar == null) {
-            Toast.makeText(MainActivity.this, "MainActivity - mToolBar is null.", Toast.LENGTH_LONG);
-            Log.e("MainActivity", "MainActivity - mToolBar is null.");
-        }
-        setSupportActionBar(mToolBar);
+        //tToolbar set.
         try {
+            mToolBar = findViewById(R.id.main_page_toolbar);
+            setSupportActionBar(mToolBar);
             getSupportActionBar().setTitle("Tool Bar");
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -41,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in (non-null) and change activity accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             goToStartActivity();

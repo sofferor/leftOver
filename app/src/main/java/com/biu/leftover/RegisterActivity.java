@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,18 +36,23 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //ToolBar set
-        mToolBar = (Toolbar) findViewById(R.id.register_toolbar);
-        setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Create Account");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        mToolBar = findViewById(R.id.register_toolbar);
         mAuth = FirebaseAuth.getInstance();
+        mName = findViewById(R.id.register_name);
+        mEmail = findViewById(R.id.register_email);
+        mPassword = findViewById(R.id.register_password);
+        mRegBtn = findViewById(R.id.register_reg_btn);
 
-        mName = (EditText) findViewById(R.id.register_name);
-        mEmail = (EditText) findViewById(R.id.register_email);
-        mPassword = (EditText) findViewById(R.id.register_password);
-        mRegBtn = (Button) findViewById(R.id.register_reg_btn);
+        //Toolbar set
+        try {
+            setSupportActionBar(mToolBar);
+            getSupportActionBar().setTitle("Create Account");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(this.getLocalClassName(), e.getMessage());
+        }
 
         mRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override

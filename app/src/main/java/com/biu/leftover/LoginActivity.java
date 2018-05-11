@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -19,13 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //firebase auth.
     private FirebaseAuth mAuth;
-
-    //toolbar
     private Toolbar mToolBar;
-
-    //android fields.
     private EditText mEmail;
     private EditText mPassword;
     private Button mRegBtn;
@@ -35,18 +31,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //ToolBar set
-        mToolBar = (Toolbar) findViewById(R.id.login_toolbar);
-        setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Login");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        mToolBar = findViewById(R.id.login_toolbar);
         mAuth = FirebaseAuth.getInstance();
+        mEmail = findViewById(R.id.login_email);
+        mPassword = findViewById(R.id.login_password);
+        mRegBtn = findViewById(R.id.login_btn);
 
-        mEmail = (EditText) findViewById(R.id.login_email);
-        mPassword = (EditText) findViewById(R.id.login_password);
-        mRegBtn = (Button) findViewById(R.id.login_btn);
-
+        //Toolbar set
+        try {
+            setSupportActionBar(mToolBar);
+            getSupportActionBar().setTitle("Login");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(this.getLocalClassName(), e.getMessage());
+        }
 
         mRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override
