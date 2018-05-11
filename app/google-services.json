@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "160711430292",
+    "firebase_url": "https://leftover-38e2b.firebaseio.com",
+    "project_id": "leftover-38e2b",
+    "storage_bucket": "leftover-38e2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160711430292:android:b92d0e49e264e371",
+        "android_client_info": {
+          "package_name": "com.biu.leftover"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160711430292-0ijduu2i39nlivlu08t2lfg7rrhqblos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.biu.leftover",
+            "certificate_hash": "ac1477226df4e55071f03ef315f1d4476e8886e7"
+          }
+        },
+        {
+          "client_id": "160711430292-tu380ealba24eub4e7cbrss95s27bgqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.biu.leftover",
+            "certificate_hash": "7e65e3d8ffd2d4b05111e0038a7c406bbd5f8fa2"
+          }
+        },
+        {
+          "client_id": "160711430292-6b71rhvi5gdf0n6eah23qee787mt2osb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYyVBm4vmPwZIA9545nsNS_2NOu_5DvEE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160711430292-6b71rhvi5gdf0n6eah23qee787mt2osb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
