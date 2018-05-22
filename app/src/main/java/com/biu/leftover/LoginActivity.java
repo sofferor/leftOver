@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Login");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (Exception e) {
-            e.printStackTrace();
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e(this.getLocalClassName(), e.getMessage());
         }

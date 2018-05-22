@@ -45,11 +45,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Toolbar set
         try {
-            setSupportActionBar(mToolBar);
+            //setSupportActionBar(mToolBar);
             getSupportActionBar().setTitle("Create Account");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (Exception e) {
-            e.printStackTrace();
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e(this.getLocalClassName(), e.getMessage());
         }
