@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.biu.leftover.model.User;
+import com.biu.leftover.utils.Constants;
+import com.biu.leftover.utils.DBUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
@@ -69,7 +73,6 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                //progressDialog.setView(view);
                 progressDialog.setTitle("log in");
                 progressDialog.setMessage("log in");
                 progressDialog.show();
@@ -115,10 +118,14 @@ public class StartActivity extends AppCompatActivity {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
+
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
+                                DBUtils.addObject(Constants.USERS, new User(currUser));
+                            }
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Intent mainIntent = new Intent(StartActivity.this, MainActivity.class);
@@ -134,6 +141,6 @@ public class StartActivity extends AppCompatActivity {
 
                         // ...
                     }
-                });
+                );
     }
 }

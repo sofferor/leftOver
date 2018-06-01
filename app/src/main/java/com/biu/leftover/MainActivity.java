@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             goToStartActivity();
         }
-        return  true;
+        return true;
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
