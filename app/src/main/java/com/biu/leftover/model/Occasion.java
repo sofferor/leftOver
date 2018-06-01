@@ -2,23 +2,23 @@ package com.biu.leftover.model;
 
 import android.widget.ImageView;
 
-public class Event {
+public class Occasion {
 
     private String title;
     private String subtitle;
     private ImageView imageView;
 
-    public Event() {
+    public Occasion() {
         this.imageView = null;
     }
 
-    public Event(String title, String subtitle) {
+    public Occasion(String title, String subtitle) {
         this.title = title;
         this.subtitle = subtitle;
         this.imageView = null;
     }
 
-    public Event(String title, String subtitle, ImageView imageView) {
+    public Occasion(String title, String subtitle, ImageView imageView) {
         this.title = title;
         this.subtitle = subtitle;
         this.imageView = imageView;

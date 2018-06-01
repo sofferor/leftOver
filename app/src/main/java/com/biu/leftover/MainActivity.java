@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.biu.leftover.model.Event;
+import com.biu.leftover.model.Occasion;
 import com.biu.leftover.utils.Constants;
 import com.biu.leftover.utils.VerticalSpaceItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Toolbar mToolBar;
     private RecyclerView recyclerView;
-    private FirebaseRecyclerAdapter<Event, EventViewHolder> recyclerAdapter;
+    private FirebaseRecyclerAdapter<Occasion, EventViewHolder> recyclerAdapter;
     private DatabaseReference databaseReference;
     private List<Integer> images;
     private Random random;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         initialFirebaseRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
 
-        databaseReference.push().setValue(new Event("titleee", "subtitleeeeee"));//to delete
+        databaseReference.push().setValue(new Occasion("titleee", "subtitleeeeee"));//to delete
     }
 
     private void initialImages() {
@@ -93,11 +93,11 @@ public class MainActivity extends AppCompatActivity {
     private void initialFirebaseRecyclerAdapter() {
         Log.d("########", "initialFirebaseRecyclerAdapter");
         Query query = databaseReference.limitToLast(50);
-        FirebaseRecyclerOptions<Event> options = new FirebaseRecyclerOptions.Builder<Event>().
-                setQuery(query, Event.class).build();
-        recyclerAdapter = new FirebaseRecyclerAdapter<Event, EventViewHolder>(options) {
+        FirebaseRecyclerOptions<Occasion> options = new FirebaseRecyclerOptions.Builder<Occasion>().
+                setQuery(query, Occasion.class).build();
+        recyclerAdapter = new FirebaseRecyclerAdapter<Occasion, EventViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Event model) {
+            protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Occasion model) {
                 holder.setTextToTitle(model.getTitle());
                 holder.setTextToSubtitle(model.getSubtitle());
                 if (model.getImageView() == null) {
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 Log.d("########", "onCreateViewHolder");
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_event, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_occasion_, parent, false);
                 return new EventViewHolder(view);
             }
         };
