@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         initialFirebaseRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
 
-        databaseReference.push().setValue(new Occasion("titleee", "subtitleeeeee"));//to delete
+        databaseReference.push().setValue(new Occasion("Burger", "a lots of meat", "507/62"));//to delete
     }
 
     private void initialImages() {
@@ -99,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Occasion model) {
                 holder.setTextToTitle(model.getTitle());
-                holder.setTextToSubtitle(model.getSubtitle());
+                holder.setTextToInfo(model.getInfo());
+                holder.setTextToTime(model.getTime());
+                holder.setTextToLocation(model.getLocation());
+                holder.setTextToScore(String.valueOf(model.getScore()));
                 if (model.getImageView() == null) {
                     holder.setSrcToImageView(images.get(random.nextInt(images.size())));
                 } else {
@@ -171,13 +174,19 @@ public class MainActivity extends AppCompatActivity {
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
         private TextView title;
-        private TextView subtitle;
+        private TextView info;
+        private TextView time;
+        private TextView location;
+        private TextView score;
         private ImageView imageView;
 
         public EventViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.single_textView_title);
-            subtitle = itemView.findViewById(R.id.single_textView_subTitle);
+            info = itemView.findViewById(R.id.single_textView_info);
+            time = itemView.findViewById(R.id.single_time_text);
+            location = itemView.findViewById(R.id.single_location_text);
+            score = itemView.findViewById(R.id.single_text_score);
             imageView = itemView.findViewById(R.id.single_imageView);
         }
 
@@ -185,8 +194,20 @@ public class MainActivity extends AppCompatActivity {
             this.title.setText(text);
         }
 
-        public void setTextToSubtitle(String subtitle) {
-            this.subtitle.setText(subtitle);
+        public void setTextToInfo(String info) {
+            this.info.setText(info);
+        }
+
+        public void setTextToTime(String time) {
+            this.time.setText(time);
+        }
+
+        public void setTextToLocation(String location) {
+            this.location.setText(location);
+        }
+
+        public void setTextToScore(String score) {
+            this.score.setText(score);
         }
 
         public void setSrcToImageView(int src) {
