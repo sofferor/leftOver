@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Occasion model) {
                 holder.setTextToTitle(model.getTitle());
                 holder.setTextToInfo(model.getInfo());
-                holder.setTextToTime(model.getTime());
+                holder.setTextToTime(model.getCreate_time_display());
                 holder.setTextToLocation(model.getLocation());
                 holder.setTextToScore(String.valueOf(model.getScore()));
                 if (model.getImageView() == null) {
