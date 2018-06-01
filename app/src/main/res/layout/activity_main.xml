@@ -4,22 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.biu.leftover.MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context="com.biu.leftover.MainActivity">
 
     <include
         android:id="@+id/main_page_toolbar"
-        layout="@layout/app_bar_layout" />
+        layout="@layout/app_bar_layout"
+        android:visibility="visible" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_activity"
-        android:textSize="34sp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_events_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_page_toolbar"
+        app:layout_constraintVertical_bias="0.666">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/main_events_list"
+        app:layout_constraintEnd_toEndOf="@+id/main_events_list"
+        app:srcCompat="@drawable/plus"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,31 +1,125 @@
 package com.biu.leftover;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.biu.leftover.model.Event;
+import com.biu.leftover.utils.Constants;
+import com.biu.leftover.utils.VerticalSpaceItemDecoration;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Toolbar mToolBar;
+    private RecyclerView recyclerView;
+    private FirebaseRecyclerAdapter<Event, EventViewHolder> recyclerAdapter;
+    private DatabaseReference databaseReference;
+    private List<Integer> images;
+    private Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
 
-        //tToolbar set.
+        mToolBar = findViewById(R.id.main_page_toolbar);
+        setSupportActionBarAndTitle();
+        mAuth = FirebaseAuth.getInstance();
+        images = new ArrayList<>();
+        initialImages();
+        random = new Random();
+
+
+        recyclerView = findViewById(R.id.main_events_list);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        VerticalSpaceItemDecoration verticalSpaceItemDecoration = new VerticalSpaceItemDecoration(10);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.addItemDecoration(verticalSpaceItemDecoration);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(Constants.EVENTS);
+        initialFirebaseRecyclerAdapter();
+        recyclerView.setAdapter(recyclerAdapter);
+
+        databaseReference.push().setValue(new Event("titleee", "subtitleeeeee"));//to delete
+    }
+
+    private void initialImages() {
+        images.add(Constants.EMOJI1);
+        images.add(Constants.EMOJI2);
+        images.add(Constants.EMOJI3);
+        images.add(Constants.EMOJI4);
+        images.add(Constants.EMOJI5);
+        images.add(Constants.EMOJI6);
+        images.add(Constants.EMOJI7);
+        images.add(Constants.EMOJI8);
+        images.add(Constants.EMOJI9);
+        images.add(Constants.EMOJI10);
+        images.add(Constants.EMOJI11);
+        images.add(Constants.EMOJI12);
+        images.add(Constants.EMOJI13);
+    }
+
+    private void initialFirebaseRecyclerAdapter() {
+        Log.d("########", "initialFirebaseRecyclerAdapter");
+        Query query = databaseReference.limitToLast(50);
+        FirebaseRecyclerOptions<Event> options = new FirebaseRecyclerOptions.Builder<Event>().
+                setQuery(query, Event.class).build();
+        recyclerAdapter = new FirebaseRecyclerAdapter<Event, EventViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Event model) {
+                holder.setTextToTitle(model.getTitle());
+                holder.setTextToSubtitle(model.getSubtitle());
+                if (model.getImageView() == null) {
+                    holder.setSrcToImageView(images.get(random.nextInt(images.size())));
+                } else {
+                    //to complete
+                }
+            }
+
+            @NonNull
+            @Override
+            public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                Log.d("########", "onCreateViewHolder");
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_event, parent, false);
+                return new EventViewHolder(view);
+            }
+        };
+    }
+
+    private void setSupportActionBarAndTitle() {
+
         try {
-            mToolBar = findViewById(R.id.main_page_toolbar);
             setSupportActionBar(mToolBar);
             getSupportActionBar().setTitle("Tool Bar");
         } catch (Exception e) {
@@ -42,6 +136,13 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser == null) {
             goToStartActivity();
         }
+        recyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        recyclerAdapter.stopListening();
     }
 
     private void goToStartActivity() {
@@ -65,5 +166,31 @@ public class MainActivity extends AppCompatActivity {
             goToStartActivity();
         }
         return  true;
+    }
+
+    public static class EventViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView title;
+        private TextView subtitle;
+        private ImageView imageView;
+
+        public EventViewHolder(View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.single_textView_title);
+            subtitle = itemView.findViewById(R.id.single_textView_subTitle);
+            imageView = itemView.findViewById(R.id.single_imageView);
+        }
+
+        public void setTextToTitle(String text) {
+            this.title.setText(text);
+        }
+
+        public void setTextToSubtitle(String subtitle) {
+            this.subtitle.setText(subtitle);
+        }
+
+        public void setSrcToImageView(int src) {
+            this.imageView.setImageResource(src);
+        }
     }
 }
