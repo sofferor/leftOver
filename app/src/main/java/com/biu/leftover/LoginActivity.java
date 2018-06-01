@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.biu.leftover.utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         //Toolbar set
         try {
             setSupportActionBar(mToolBar);
-            getSupportActionBar().setTitle("Login");
+            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_LOGIN);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (Exception e) {
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();

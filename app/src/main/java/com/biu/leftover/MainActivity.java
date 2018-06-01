@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             setSupportActionBar(mToolBar);
-            getSupportActionBar().setTitle("Tool Bar");
+            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_MAIN_ACTIVITY);
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.e("MainActivity", e.getMessage());

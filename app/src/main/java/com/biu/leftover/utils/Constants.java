@@ -5,6 +5,9 @@ import com.biu.leftover.R;
 public final class Constants {
 
     public static final String EVENTS = "events";
+    public static final String TOOL_BAR_TITLE_MAIN_ACTIVITY = "Events";
+    public static final String TOOL_BAR_TITLE_REGISTER = "Create Account";
+    public static final String TOOL_BAR_TITLE_LOGIN = "Login";
     public static final int EMOJI1 = R.drawable.emoji1;
     public static final int EMOJI2 = R.drawable.emoji2;
     public static final int EMOJI3 = R.drawable.emoji3;

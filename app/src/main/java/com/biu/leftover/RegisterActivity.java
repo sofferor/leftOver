@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.biu.leftover.utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Toolbar set
         try {
             setSupportActionBar(mToolBar);
-            getSupportActionBar().setTitle("Create Account");
+            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_REGISTER);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (Exception e) {
             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
