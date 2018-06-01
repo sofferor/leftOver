@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 holder.setTextToLocation(model.getLocation());
                 holder.setTextToScore(String.valueOf(model.getScore()));
                 if (model.getImageView() == null) {
-                    holder.setSrcToImageView(images.get(random.nextInt(images.size())));
+                    holder.setSrcToImageView(images.get(model.getImageIndex()));
                 } else {
                     //to complete
                 }

@@ -4,6 +4,7 @@ import android.widget.ImageView;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Occasion {
 
@@ -14,6 +15,7 @@ public class Occasion {
     private Date update_time;
     private String location;
     private int score;
+    private int imageIndex;
     private ImageView imageView;
 
     public Occasion() {
@@ -38,6 +40,8 @@ public class Occasion {
         this.info = info;
         this.location = location;
         this.create_time_display = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
+        Random random = new Random();
+        this.imageIndex =random.nextInt(13);
     }
 
     public Occasion(String title, String info, String location, ImageView imageView) {
@@ -66,6 +70,10 @@ public class Occasion {
 
     public int getScore() {
         return score;
+    }
+
+    public int getImageIndex() {
+        return imageIndex;
     }
 
     public ImageView getImageView() {
