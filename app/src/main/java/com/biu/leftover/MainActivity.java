@@ -35,6 +35,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = this.getClass().getSimpleName();
     private FirebaseAuth mAuth;
     private Toolbar mToolBar;
     private RecyclerView recyclerView;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_MAIN_ACTIVITY);
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.e("MainActivity", e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
     }
 
