@@ -10,7 +10,7 @@ public class Occasion {
 
     private String title;
     private String info;
-    private String create_time_display;
+    private String time;
     private Date create_time;
     private Date update_time;
     private String location;
@@ -19,27 +19,27 @@ public class Occasion {
     private ImageView imageView;
 
     public Occasion() {
-        this.create_time_display = DateFormat.getDateTimeInstance().format(new Date());
+        this.time = DateFormat.getDateTimeInstance().format(new Date());
     }
 
     public Occasion(String title, String info) {
         this.title = title;
         this.info = info;
-        this.create_time_display = DateFormat.getDateTimeInstance().format(new Date());
+        this.time = DateFormat.getDateTimeInstance().format(new Date());
     }
 
     public Occasion(String title, String info, ImageView imageView) {
         this.title = title;
         this.info = info;
         this.imageView = imageView;
-        this.create_time_display = DateFormat.getDateTimeInstance().format(new Date());
+        this.time = DateFormat.getDateTimeInstance().format(new Date());
     }
 
     public Occasion(String title, String info, String location) {
         this.title = title;
         this.info = info;
         this.location = location;
-        this.create_time_display = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
+        this.time = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
         Random random = new Random();
         this.imageIndex =random.nextInt(13);
     }
@@ -49,7 +49,7 @@ public class Occasion {
         this.info = info;
         this.location = location;
         this.imageView = imageView;
-        this.create_time_display = DateFormat.getDateTimeInstance().format(new Date());
+        this.time = DateFormat.getDateTimeInstance().format(new Date());
     }
 
     public String getTitle() {
@@ -60,8 +60,8 @@ public class Occasion {
         return info;
     }
 
-    public String getCreate_time_display() {
-        return create_time_display;
+    public String getTime() {
+        return time;
     }
 
     public String getLocation() {
@@ -88,8 +88,8 @@ public class Occasion {
         this.info = info;
     }
 
-    public void setCreate_time_display(String create_time_display) {
-        this.create_time_display = create_time_display;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setLocation(String location) {
