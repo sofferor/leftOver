@@ -8,7 +8,7 @@
     tools:context=".StartActivity">
 
     <ImageView
-        android:id="@+id/single_img_sandwitch"
+        android:id="@+id/single_img_behind_title"
         android:layout_width="268dp"
         android:layout_height="196dp"
         android:layout_marginEnd="8dp"
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="128dp"
         android:text="@string/application_name"
         android:textAllCaps="true"
         android:textColor="#FF7EF2FF"
@@ -101,8 +101,8 @@
 
     <ImageButton
         android:id="@+id/single_btn_facebook"
-        android:layout_width="73dp"
-        android:layout_height="75dp"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -110,10 +110,10 @@
         android:background="@drawable/facebook"
         app:layout_constraintBottom_toTopOf="@+id/start_btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toEndOf="@+id/google_sign_button"
         app:layout_constraintTop_toBottomOf="@+id/single_title"
-        app:layout_constraintVertical_bias="0.807" />
+        app:layout_constraintVertical_bias="0.863" />
 
 
 </android.support.constraint.ConstraintLayout>
