@@ -12,6 +12,7 @@ public final class Constants {
     public static final String TOOL_BAR_TITLE_MAIN_ACTIVITY = "Events";
     public static final String TOOL_BAR_TITLE_REGISTER = "Create Account";
     public static final String TOOL_BAR_TITLE_LOGIN = "Login";
+    public static final String TOOL_BAR_TITLE_ADD_OCCASION = "Add Occasion";
 
     // Emojis
     public static final int EMOJI1 = R.drawable.emoji1;

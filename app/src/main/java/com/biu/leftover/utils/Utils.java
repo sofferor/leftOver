@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Utils {
 
-    public static  String getUID(){
+    public static String getUID(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(Constants.EVENTS).push();
         String[] urlAraay = databaseReference.toString().split("/");
         return urlAraay[urlAraay.length - 1];

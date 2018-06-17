@@ -4,52 +4,29 @@ import android.widget.ImageView;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Random;
 
 public class Occasion {
 
     private String title;
     private String info;
-    private String time;
+    private String timeDisplay;
     private Date create_time;
     private Date update_time;
-    private String location;
+    private OccasionLocation occasionLocation;
     private int score;
     private int imageIndex;
     private ImageView imageView;
 
     public Occasion() {
-        this.time = DateFormat.getDateTimeInstance().format(new Date());
     }
 
-    public Occasion(String title, String info) {
+    public Occasion(String title, String info, Date create_time, OccasionLocation occasionLocation) {
         this.title = title;
         this.info = info;
-        this.time = DateFormat.getDateTimeInstance().format(new Date());
-    }
-
-    public Occasion(String title, String info, ImageView imageView) {
-        this.title = title;
-        this.info = info;
-        this.imageView = imageView;
-        this.time = DateFormat.getDateTimeInstance().format(new Date());
-    }
-
-    public Occasion(String title, String info, String location) {
-        this.title = title;
-        this.info = info;
-        this.location = location;
-        this.time = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
-        Random random = new Random();
-        this.imageIndex =random.nextInt(13);
-    }
-
-    public Occasion(String title, String info, String location, ImageView imageView) {
-        this.title = title;
-        this.info = info;
-        this.location = location;
-        this.imageView = imageView;
-        this.time = DateFormat.getDateTimeInstance().format(new Date());
+        this.timeDisplay = DateFormat.getDateTimeInstance().format(create_time);
+        this.create_time = create_time;
+        this.occasionLocation = occasionLocation;
+        this.score = 0;
     }
 
     public String getTitle() {
@@ -60,16 +37,20 @@ public class Occasion {
         return info;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimeDisplay() {
+        return timeDisplay;
     }
 
-    public String getLocation() {
-        return location;
+    public OccasionLocation getOccasionLocation() {
+        return occasionLocation;
     }
 
     public int getScore() {
         return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public int getImageIndex() {
@@ -80,35 +61,11 @@ public class Occasion {
         return imageView;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void increaseScore(){
-        score++;
-    }
-
-    public void decreaseScore(){
-        score--;
-    }
-
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+    public Date getUpdate_time() {
+        return update_time;
     }
 }

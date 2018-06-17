@@ -13,4 +13,9 @@
     <string name="login_to_your_account">Login to your account</string>
     <string name="already_have_an_account">already have an account</string>
     <string name="application_name">LEFT OVER</string>
+    <string name="food_types_spinner_title">Pick Type</string>
+    <string name="add_occasion">Add Occasion</string>
+    <string name="save">Save</string>
+    <string name="building">Building</string>
+    <string name="room">Room</string>
 </resources>

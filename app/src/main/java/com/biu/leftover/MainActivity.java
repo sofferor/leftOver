@@ -3,6 +3,7 @@ package com.biu.leftover;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private List<Integer> images;
     private Random random;
+    private FloatingActionButton addOccasionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.EVENTS);
         initialFirebaseRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
-
-        databaseReference.push().setValue(new Occasion("Burger", "a lots of meat", "507/62"));//to delete
     }
 
     private void initialImages() {
@@ -101,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Occasion model) {
                 holder.setTextToTitle(model.getTitle());
                 holder.setTextToInfo(model.getInfo());
-                holder.setTextToTime(model.getTime());
-                holder.setTextToLocation(model.getLocation());
+                holder.setTextToTime(model.getTimeDisplay());
+                holder.setTextToLocation(model.getOccasionLocation().getLocationDisplay());
                 holder.setTextToScore(String.valueOf(model.getScore()));
                 if (model.getImageView() == null) {
                     holder.setSrcToImageView(images.get(model.getImageIndex()));
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
             public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 Log.d("########", "onCreateViewHolder");
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_occasion_, parent, false);
+                
                 return new EventViewHolder(view);
             }
         };
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and change activity accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            goToStartActivity();
+            goToActivity(StartActivity.class, true);
         }
         recyclerAdapter.startListening();
     }
@@ -149,10 +151,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerAdapter.stopListening();
     }
 
-    private void goToStartActivity() {
-        Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
+    private void goToActivity(Class<?> cls, boolean finish) {
+        Intent startIntent = new Intent(MainActivity.this, cls);
         startActivity(startIntent);
-        finish();
+        if (finish) {
+            finish();
+        }
     }
 
     @Override
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.main_menu_log_out) {
             FirebaseAuth.getInstance().signOut();
-            goToStartActivity();
+            goToActivity(StartActivity.class, true);
         }
         return true;
     }
