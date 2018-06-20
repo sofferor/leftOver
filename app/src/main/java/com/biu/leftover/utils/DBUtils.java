@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.Map;
 
 public class DBUtils {
@@ -36,11 +37,13 @@ public class DBUtils {
         return null;
     }
 
-    public static Task<Void> updateObject(String tableName, String dbId, Object o, Map<String, Object> params) {
+    public static Task<Void> updateObject(String tableName, String dbId, DbObject o, Map<String, Object> params) {
         DatabaseReference objRef = databaseReference.child(tableName).child(dbId);
         if (o != null) {
+            o.setUpdate_time(new Date());
             return objRef.setValue(o);
         } else if (params != null) {
+            params.put("update_time", new Date());
             return objRef.updateChildren(params);
         }
         return null;

@@ -27,6 +27,7 @@ public class Occasion implements DbObject {
         this.info = other.getInfo();
         this.timeDisplay = other.getTimeDisplay();
         this.create_time = other.getCreate_time();
+        this.update_time = other.getUpdate_time();
         this.occasionLocation = other.getOccasionLocation();
         this.score = other.getScore();
     }
@@ -36,6 +37,7 @@ public class Occasion implements DbObject {
         this.info = info;
         this.timeDisplay = DateFormat.getDateTimeInstance().format(create_time);
         this.create_time = create_time;
+        this.update_time = create_time;
         this.occasionLocation = occasionLocation;
         this.score = 0;
     }
@@ -96,5 +98,10 @@ public class Occasion implements DbObject {
     @Override
     public void setDbId(String dbId) {
         this.dbId = dbId;
+    }
+
+    @Override
+    public void setUpdate_time(Date date) {
+        this.update_time = date;
     }
 }
