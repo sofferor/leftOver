@@ -28,6 +28,7 @@
         <activity
             android:name=".AddOccasionActivity"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".ViewOccasionActivity"></activity>
     </application>
 
 </manifest>

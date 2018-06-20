@@ -2,8 +2,11 @@ package com.biu.leftover.model;
 
 import android.widget.ImageView;
 
+import com.biu.leftover.utils.Constants;
+
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Occasion implements DbObject {
 
@@ -15,7 +18,7 @@ public class Occasion implements DbObject {
     private Date update_time;
     private OccasionLocation occasionLocation;
     private int score;
-    private int imageIndex;
+    private int imageIndex = new Random().nextInt(Constants.NUM_OF_EMOJIES);
     private ImageView imageView;
 
     public Occasion() {

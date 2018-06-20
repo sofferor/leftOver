@@ -28,4 +28,5 @@ public final class Constants {
     public static final int EMOJI11 = R.drawable.emoji11;
     public static final int EMOJI12 = R.drawable.emoji12;
     public static final int EMOJI13 = R.drawable.emoji13;
+    public static final int NUM_OF_EMOJIES = 13;
 }

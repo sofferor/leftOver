@@ -3,6 +3,7 @@ package com.biu.leftover;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.biu.leftover.model.Occasion;
 import com.biu.leftover.utils.Constants;
 import com.biu.leftover.utils.DBUtils;
+import com.biu.leftover.utils.Utils;
 import com.biu.leftover.utils.VerticalSpaceItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -32,8 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Occasion, EventViewHolder> recyclerAdapter;
     private DatabaseReference databaseReference;
-    private List<Integer> images;
     private Random random;
     private FloatingActionButton addOccasionButton;
 
@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
         mToolBar = findViewById(R.id.main_page_toolbar);
         setSupportActionBarAndTitle();
         mAuth = FirebaseAuth.getInstance();
-        images = new ArrayList<>();
-        initialImages();
         random = new Random();
 
 
@@ -78,24 +76,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerAdapter);
 
 
-        addOccasionButton = findViewById(R.id.add_occasion_button);
+        addOccasionButton = findViewById(R.id.main_add_occasion_button);
         addOccasionButton.setOnClickListener(view -> goToActivity(AddOccasionActivity.class, false, null));
-    }
-
-    private void initialImages() {
-        images.add(Constants.EMOJI1);
-        images.add(Constants.EMOJI2);
-        images.add(Constants.EMOJI3);
-        images.add(Constants.EMOJI4);
-        images.add(Constants.EMOJI5);
-        images.add(Constants.EMOJI6);
-        images.add(Constants.EMOJI7);
-        images.add(Constants.EMOJI8);
-        images.add(Constants.EMOJI9);
-        images.add(Constants.EMOJI10);
-        images.add(Constants.EMOJI11);
-        images.add(Constants.EMOJI12);
-        images.add(Constants.EMOJI13);
     }
 
     private void initialFirebaseRecyclerAdapter() {
@@ -111,8 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 holder.setTextToTime(model.getTimeDisplay());
                 holder.setTextToLocation(model.getOccasionLocation().getLocationDisplay());
                 holder.setTextToScore(String.valueOf(model.getScore()));
+                holder.setOnClickListner(v -> {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("dbId", model.getDbId());
+                    goToActivity(ViewOccasionActivity.class, false, map);
+                });
                 if (model.getImageView() == null) {
-                    holder.setSrcToImageView(images.get(model.getImageIndex()));
+                    holder.setSrcToImageView(Utils.getImage(model.getImageIndex()));
                 } else {
                     //to complete
                 }
@@ -133,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 Log.d("########", "onCreateViewHolder");
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_occasion_, parent, false);
-                
+
                 return new EventViewHolder(view);
             }
         };
@@ -206,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         private TextView location;
         private TextView score;
         private ImageView imageView;
+        private ConstraintLayout constraintLayout;
         private ImageButton likeButton;
         private ImageButton disLikeButton;
 
@@ -215,10 +203,11 @@ public class MainActivity extends AppCompatActivity {
             info = itemView.findViewById(R.id.single_textView_info);
             time = itemView.findViewById(R.id.single_time_text);
             location = itemView.findViewById(R.id.single_location_text);
-            score = itemView.findViewById(R.id.single_text_score);
+            score = itemView.findViewById(R.id.view_text_score);
             imageView = itemView.findViewById(R.id.single_imageView);
-            likeButton = itemView.findViewById(R.id.single_imageButton_like);
-            disLikeButton = itemView.findViewById(R.id.single_imageButton_dislike);
+            likeButton = itemView.findViewById(R.id.view_imageButton_like);
+            disLikeButton = itemView.findViewById(R.id.view_imageButton_dislike);
+            constraintLayout = itemView.findViewById(R.id.single_parent_layout);
         }
 
         public void setTextToTitle(String text) {
@@ -243,6 +232,10 @@ public class MainActivity extends AppCompatActivity {
 
         public void setSrcToImageView(int src) {
             this.imageView.setImageResource(src);
+        }
+
+        public void setOnClickListner(View.OnClickListener clickListner) {
+            constraintLayout.setOnClickListener(clickListner);
         }
     }
 }

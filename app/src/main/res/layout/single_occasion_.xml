@@ -62,7 +62,7 @@
         app:layout_constraintStart_toEndOf="@+id/single_imageView" />
 
     <TextView
-        android:id="@+id/single_text_score"
+        android:id="@+id/view_text_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -72,23 +72,23 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
-        android:id="@+id/single_imageButton_like"
-        android:layout_width="32dp"
-        android:layout_height="24dp"
+        android:id="@+id/view_imageButton_like"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/like"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/single_text_score" />
+        app:layout_constraintEnd_toStartOf="@+id/view_text_score" />
 
     <ImageButton
-        android:id="@+id/single_imageButton_dislike"
-        android:layout_width="32dp"
-        android:layout_height="24dp"
+        android:id="@+id/view_imageButton_dislike"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/dislike"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/single_imageButton_like" />
+        app:layout_constraintEnd_toStartOf="@+id/view_imageButton_like" />
 
 </android.support.constraint.ConstraintLayout>
