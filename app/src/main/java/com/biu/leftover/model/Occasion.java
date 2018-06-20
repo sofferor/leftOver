@@ -5,8 +5,9 @@ import android.widget.ImageView;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Occasion {
+public class Occasion implements DbObject {
 
+    private String dbId;
     private String title;
     private String info;
     private String timeDisplay;
@@ -18,6 +19,16 @@ public class Occasion {
     private ImageView imageView;
 
     public Occasion() {
+    }
+
+    public Occasion(Occasion other) {
+        this.dbId = other.getDbId();
+        this.title = other.getTitle();
+        this.info = other.getInfo();
+        this.timeDisplay = other.getTimeDisplay();
+        this.create_time = other.getCreate_time();
+        this.occasionLocation = other.getOccasionLocation();
+        this.score = other.getScore();
     }
 
     public Occasion(String title, String info, Date create_time, OccasionLocation occasionLocation) {
@@ -53,6 +64,14 @@ public class Occasion {
         this.score = score;
     }
 
+    public void incScore() {
+        this.score += 1;
+    }
+
+    public void decScore() {
+        this.score -= 1;
+    }
+
     public int getImageIndex() {
         return imageIndex;
     }
@@ -67,5 +86,15 @@ public class Occasion {
 
     public Date getUpdate_time() {
         return update_time;
+    }
+
+    @Override
+    public String getDbId() {
+        return dbId;
+    }
+
+    @Override
+    public void setDbId(String dbId) {
+        this.dbId = dbId;
     }
 }

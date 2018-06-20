@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class User {
+public class User implements DbObject {
+
+    private String dbId;
     private String user_id;
     private String user_name;
     private String email;
@@ -95,5 +97,15 @@ public class User {
 
     public void setOccasions_followed(List<Occasion> occasions_followed) {
         this.occasions_followed = occasions_followed;
+    }
+
+    @Override
+    public String getDbId() {
+        return dbId;
+    }
+
+    @Override
+    public void setDbId(String dbId) {
+        this.dbId = dbId;
     }
 }

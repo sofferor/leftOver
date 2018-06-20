@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.biu.leftover.model.Occasion;
 import com.biu.leftover.utils.Constants;
+import com.biu.leftover.utils.DBUtils;
 import com.biu.leftover.utils.VerticalSpaceItemDecoration;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -32,7 +34,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.EVENTS);
         initialFirebaseRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
+
+
+        addOccasionButton = findViewById(R.id.add_occasion_button);
+        addOccasionButton.setOnClickListener(view -> goToActivity(AddOccasionActivity.class, false));
     }
 
     private void initialImages() {
@@ -110,6 +118,16 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //to complete
                 }
+                holder.likeButton.setOnClickListener(view -> {
+                    Occasion occasion = new Occasion(model);
+                    occasion.incScore();
+                    DBUtils.updateObject(Constants.EVENTS, occasion.getDbId(), occasion, null);
+                });
+                holder.disLikeButton.setOnClickListener(view -> {
+                    Occasion occasion = new Occasion(model);
+                    occasion.decScore();
+                    DBUtils.updateObject(Constants.EVENTS, occasion.getDbId(), occasion, null);
+                });
             }
 
             @NonNull
@@ -184,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
         private TextView location;
         private TextView score;
         private ImageView imageView;
+        private ImageButton likeButton;
+        private ImageButton disLikeButton;
 
         public EventViewHolder(View itemView) {
             super(itemView);
@@ -193,6 +213,8 @@ public class MainActivity extends AppCompatActivity {
             location = itemView.findViewById(R.id.single_location_text);
             score = itemView.findViewById(R.id.single_text_score);
             imageView = itemView.findViewById(R.id.single_imageView);
+            likeButton = itemView.findViewById(R.id.single_imageButton_like);
+            disLikeButton = itemView.findViewById(R.id.single_imageButton_dislike);
         }
 
         public void setTextToTitle(String text) {
