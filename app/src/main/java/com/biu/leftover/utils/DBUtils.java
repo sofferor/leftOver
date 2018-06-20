@@ -48,4 +48,8 @@ public class DBUtils {
     public static DatabaseReference getObjDbReference(String tableName, String dbId) {
         return databaseReference.child(tableName).child(dbId);
     }
+
+    public static Task<Void> DeleteObj(String tableName, String dbId) {
+        return databaseReference.child(tableName).child(dbId).removeValue();
+    }
 }
