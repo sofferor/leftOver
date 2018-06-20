@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -34,7 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         addOccasionButton = findViewById(R.id.add_occasion_button);
-        addOccasionButton.setOnClickListener(view -> goToActivity(AddOccasionActivity.class, false));
+        addOccasionButton.setOnClickListener(view -> goToActivity(AddOccasionActivity.class, false, null));
     }
 
     private void initialImages() {
@@ -158,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and change activity accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            goToActivity(StartActivity.class, true);
+            goToActivity(StartActivity.class, true, null);
         }
         recyclerAdapter.startListening();
     }
@@ -169,8 +167,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerAdapter.stopListening();
     }
 
-    private void goToActivity(Class<?> cls, boolean finish) {
+    private void goToActivity(Class<?> cls, boolean finish, Map<String, String> extras) {
         Intent startIntent = new Intent(MainActivity.this, cls);
+        if (extras != null) {
+            extras.forEach(startIntent::putExtra);
+        }
         startActivity(startIntent);
         if (finish) {
             finish();
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.main_menu_log_out) {
             FirebaseAuth.getInstance().signOut();
-            goToActivity(StartActivity.class, true);
+            goToActivity(StartActivity.class, true, null);
         }
         return true;
     }
