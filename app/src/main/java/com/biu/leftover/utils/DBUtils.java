@@ -45,7 +45,7 @@ public class DBUtils {
         return null;
     }
 
-    private static DatabaseReference getObjDbReference(String tableName, String dbId) {
+    public static DatabaseReference getObjDbReference(String tableName, String dbId) {
         return databaseReference.child(tableName).child(dbId);
     }
 }
