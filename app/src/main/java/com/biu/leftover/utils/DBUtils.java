@@ -24,10 +24,6 @@ public class DBUtils {
         return databaseReference.child(tablePath);
     }
 
-    public static String getObjectId(String tableName) {
-        return databaseReference.child(tableName).push().getKey();
-    }
-
     public static Task<Void> addObject(String tableName, DbObject dbObject) {
         if (dbObject != null) {
             String dbId = databaseReference.child(tableName).push().getKey();
