@@ -7,7 +7,7 @@ import java.util.List;
 public enum FoodType {
     DAIRY("Dairy"),
     PARVE("Parve"),
-    MEAT("Meaty"),
+    MEAT("Meat"),
     VEGAN("Vegan"),
     NONE("None");
 
