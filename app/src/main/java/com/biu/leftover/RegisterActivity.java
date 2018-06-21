@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mToolBar = findViewById(R.id.register_toolbar);
+        mToolBar = findViewById(R.id.view_toolbar);
         mAuth = FirebaseAuth.getInstance();
         mName = findViewById(R.id.register_name);
         mEmail = findViewById(R.id.register_email);

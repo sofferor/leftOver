@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.biu.leftover.model.Occasion;
 import com.biu.leftover.utils.Constants;
@@ -28,12 +31,23 @@ public class ViewOccasionActivity extends AppCompatActivity {
     private ImageButton likeButton;
     private ImageButton disLikeButton;
     private FloatingActionButton deleteOccasionButton;
+    private Toolbar toolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veiw_occasion);
 
+        toolBar = findViewById(R.id.view_toolbar);
+        //Toolbar set
+        try {
+            setSupportActionBar(toolBar);
+            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_VIEW);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (Exception e) {
+            Toast.makeText(ViewOccasionActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(this.getLocalClassName(), e.getMessage());
+        }
         title = findViewById(R.id.view_textView_title);
         info = findViewById(R.id.view_textView_info);
         time = findViewById(R.id.view_time_text);
@@ -61,10 +75,12 @@ public class ViewOccasionActivity extends AppCompatActivity {
                 likeButton.setOnClickListener(view -> {
                     occasion.incScore();
                     DBUtils.updateObject(Constants.EVENTS, occasion.getDbId(), occasion, null);
+                    score.setText(String.valueOf(occasion.getScore()));
                 });
                 disLikeButton.setOnClickListener(view -> {
                     occasion.decScore();
                     DBUtils.updateObject(Constants.EVENTS, occasion.getDbId(), occasion, null);
+                    score.setText(String.valueOf(occasion.getScore()));
                 });
             }
 
