@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Occasion model) {
                 holder.setTextToTitle(model.getTitle());
                 holder.setTextToInfo(model.getInfo());
-                holder.setTextToTime(model.getTimeDisplay());
+                holder.setTextToTime(model.getCreateTimeDisplay());
                 holder.setTextToLocation(model.getOccasionLocation().getLocationDisplay());
                 holder.setTextToScore(String.valueOf(model.getScore()));
                 holder.setOnClickListner(v -> {
@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setSupportActionBarAndTitle() {
-
         try {
             setSupportActionBar(mToolBar);
             getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_MAIN_ACTIVITY);
@@ -181,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.main_menu_log_out) {
             FirebaseAuth.getInstance().signOut();
             goToActivity(StartActivity.class, true, null);
+        }
+        if (item.getItemId() == R.id.main_menu_about) {
+            goToActivity(AboutActivity.class, false, null);
         }
         return true;
     }

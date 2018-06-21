@@ -13,6 +13,7 @@ public final class Constants {
     public static final String TOOL_BAR_TITLE_REGISTER = "Create Account";
     public static final String TOOL_BAR_TITLE_LOGIN = "Login";
     public static final String TOOL_BAR_TITLE_ADD_OCCASION = "Add Occasion";
+    public static final String TOOL_BAR_TITLE_ABOUT = "About";
 
     // Emojis
     public static final int EMOJI1 = R.drawable.emoji1;

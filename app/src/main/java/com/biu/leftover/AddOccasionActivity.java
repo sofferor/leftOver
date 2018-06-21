@@ -34,17 +34,7 @@ public class AddOccasionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_occasion);
-
-        toolbar = findViewById(R.id.main_page_toolbar);
-        //Toolbar set
-        try {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_ADD_OCCASION);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } catch (Exception e) {
-            Toast.makeText(AddOccasionActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.e(this.getLocalClassName(), e.getMessage());
-        }
+        setToolbar();
 
         occasionName = findViewById(R.id.occasion_name);
         occasionInfo = findViewById(R.id.occasion_info);
@@ -78,6 +68,19 @@ public class AddOccasionActivity extends AppCompatActivity {
         startActivity(startIntent);
         if (finish) {
             finish();
+        }
+    }
+
+    private void setToolbar() {
+        toolbar = findViewById(R.id.main_page_toolbar);
+        //Toolbar set
+        try {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(Constants.TOOL_BAR_TITLE_ADD_OCCASION);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (Exception e) {
+            Toast.makeText(AddOccasionActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(this.getLocalClassName(), e.getMessage());
         }
     }
 }

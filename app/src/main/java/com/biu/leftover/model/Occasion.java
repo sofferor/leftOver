@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.biu.leftover.utils.Constants;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -13,7 +13,6 @@ public class Occasion implements DbObject {
     private String dbId;
     private String title;
     private String info;
-    private String timeDisplay;
     private Date create_time;
     private Date update_time;
     private OccasionLocation occasionLocation;
@@ -28,7 +27,6 @@ public class Occasion implements DbObject {
         this.dbId = other.getDbId();
         this.title = other.getTitle();
         this.info = other.getInfo();
-        this.timeDisplay = other.getTimeDisplay();
         this.create_time = other.getCreate_time();
         this.update_time = other.getUpdate_time();
         this.occasionLocation = other.getOccasionLocation();
@@ -38,7 +36,6 @@ public class Occasion implements DbObject {
     public Occasion(String title, String info, Date create_time, OccasionLocation occasionLocation) {
         this.title = title;
         this.info = info;
-        this.timeDisplay = DateFormat.getDateTimeInstance().format(create_time);
         this.create_time = create_time;
         this.update_time = create_time;
         this.occasionLocation = occasionLocation;
@@ -53,8 +50,8 @@ public class Occasion implements DbObject {
         return info;
     }
 
-    public String getTimeDisplay() {
-        return timeDisplay;
+    public String getCreateTimeDisplay() {
+        return new SimpleDateFormat("dd/MM HH:mm").format(getCreate_time());
     }
 
     public OccasionLocation getOccasionLocation() {

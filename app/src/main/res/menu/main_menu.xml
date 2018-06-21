@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_menu_definitions"
-        android:title="@string/definitions" />
+        android:id="@+id/main_menu_about"
+        android:title="@string/main_menu_about" />
     <item
         android:id="@+id/main_menu_log_out"
         android:title="@string/log_out" />

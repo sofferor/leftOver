@@ -18,4 +18,7 @@
     <string name="save">Save</string>
     <string name="building">Building</string>
     <string name="room">Room</string>
+    <string name="main_menu_about">About</string>
+    <string name="about_leftover">© LeftOver</string>
+    <string name="about_body_text">A special app made by students for the students.\nStudents help each other to find free food on campus.</string>
 </resources>

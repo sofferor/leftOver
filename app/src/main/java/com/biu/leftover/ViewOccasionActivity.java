@@ -50,7 +50,7 @@ public class ViewOccasionActivity extends AppCompatActivity {
                 Occasion occasion = dataSnapshot.getValue(Occasion.class);
                 title.setText(occasion.getTitle());
                 info.setText(occasion.getInfo());
-                time.setText(occasion.getTimeDisplay());
+                time.setText(occasion.getCreateTimeDisplay());
                 location.setText(occasion.getOccasionLocation().getLocationDisplay());
                 score.setText(String.valueOf(occasion.getScore()));
                 if (occasion.getImageView() == null) {

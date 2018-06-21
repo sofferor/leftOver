@@ -28,7 +28,16 @@
         <activity
             android:name=".AddOccasionActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ViewOccasionActivity"></activity>
+        <activity
+            android:name=".ViewOccasionActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
