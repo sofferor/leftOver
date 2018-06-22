@@ -7,6 +7,7 @@ import com.biu.leftover.utils.Constants;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class Occasion implements DbObject {
 
@@ -54,7 +55,9 @@ public class Occasion implements DbObject {
     }
 
     public String getCreateTimeDisplay() {
-        return new SimpleDateFormat("dd/MM HH:mm").format(getCreate_time());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm");
+        formatter.setTimeZone(TimeZone.getTimeZone("Asia/Jerusalem"));
+        return formatter.format(getCreate_time());
     }
 
     public OccasionLocation getOccasionLocation() {
