@@ -41,7 +41,7 @@ public class Occasion implements DbObject {
         this.create_time = create_time;
         this.update_time = create_time;
         this.occasionLocation = occasionLocation;
-        this.foodType = FoodType.valueOf(foodType);
+        this.foodType = FoodType.valueOf(foodType.toUpperCase());
         this.score = 0;
     }
 
