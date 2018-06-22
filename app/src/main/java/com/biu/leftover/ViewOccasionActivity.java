@@ -32,6 +32,7 @@ public class ViewOccasionActivity extends AppCompatActivity {
     private ImageButton disLikeButton;
     private FloatingActionButton deleteOccasionButton;
     private Toolbar toolBar;
+    private TextView foodType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class ViewOccasionActivity extends AppCompatActivity {
         likeButton = findViewById(R.id.view_imageButton_like);
         disLikeButton = findViewById(R.id.view_imageButton_dislike);
         deleteOccasionButton = findViewById(R.id.view_delete_occasion_button);
+        foodType = findViewById(R.id.view_foodtype);
         String dbId = getIntent().getExtras().getString("dbId");
         DBUtils.getObjDbReference(Constants.EVENTS, dbId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -67,6 +69,7 @@ public class ViewOccasionActivity extends AppCompatActivity {
                 time.setText(occasion.getCreateTimeDisplay());
                 location.setText(occasion.getOccasionLocation().getLocationDisplay());
                 score.setText(String.valueOf(occasion.getScore()));
+                foodType.setText(occasion.getFoodTypeName());
                 if (occasion.getImageView() == null) {
                     imageView.setImageResource(Utils.getImage(occasion.getImageIndex()));
                 } else {
