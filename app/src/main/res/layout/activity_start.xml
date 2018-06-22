@@ -79,27 +79,11 @@
         android:id="@+id/google_sign_button"
         android:layout_width="75dp"
         android:layout_height="77dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/google_sign_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/singe_line" />
-
-    <ImageButton
-        android:id="@+id/single_btn_facebook"
-        android:layout_width="83dp"
-        android:layout_height="78dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/facebook"
-        app:layout_constraintBottom_toTopOf="@+id/start_btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toEndOf="@+id/google_sign_button"
-        app:layout_constraintTop_toBottomOf="@+id/singe_line"
-        app:layout_constraintVertical_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>
