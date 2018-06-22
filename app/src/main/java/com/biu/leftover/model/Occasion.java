@@ -99,7 +99,7 @@ public class Occasion implements DbObject {
 
     public String getFoodTypeName() {
         if (foodType == FoodType.NONE) {
-            return null;
+            return "";
         }
         return foodType.getTypeName();
     }
