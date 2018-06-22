@@ -50,6 +50,10 @@ public class AddOccasionActivity extends AppCompatActivity {
 
 
         saveOccasionButton.setOnClickListener(view -> {
+            if (buildingNumber.getText().toString().isEmpty() || roomNumber.getText().toString().isEmpty()) {
+                Toast.makeText(AddOccasionActivity.this, "You must enter a room number and a building number.", Toast.LENGTH_LONG).show();
+                return;
+            }
             OccasionLocation occasionLocation = new OccasionLocation(Integer.valueOf(buildingNumber.getText().toString()), Integer.valueOf(roomNumber.getText().toString()));
             Occasion occasion = new Occasion(occasionName.getText().toString(), occasionInfo.getText().toString(), new Date(), occasionLocation, foodTypesSpinner.getSelectedItem().toString());
             DBUtils.addObject(Constants.EVENTS, occasion).addOnCompleteListener(task -> {
