@@ -98,6 +98,9 @@ public class Occasion implements DbObject {
     }
 
     public String getFoodTypeName() {
+        if (foodType == FoodType.NONE) {
+            return null;
+        }
         return foodType.getTypeName();
     }
 
