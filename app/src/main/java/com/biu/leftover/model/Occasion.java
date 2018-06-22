@@ -19,6 +19,7 @@ public class Occasion implements DbObject {
     private int score;
     private int imageIndex = new Random().nextInt(Constants.NUM_OF_EMOJIES);
     private ImageView imageView;
+    private FoodType foodType;
 
     public Occasion() {
     }
@@ -31,14 +32,16 @@ public class Occasion implements DbObject {
         this.update_time = other.getUpdate_time();
         this.occasionLocation = other.getOccasionLocation();
         this.score = other.getScore();
+        this.foodType = other.getFoodType();
     }
 
-    public Occasion(String title, String info, Date create_time, OccasionLocation occasionLocation) {
+    public Occasion(String title, String info, Date create_time, OccasionLocation occasionLocation, String foodType) {
         this.title = title;
         this.info = info;
         this.create_time = create_time;
         this.update_time = create_time;
         this.occasionLocation = occasionLocation;
+        this.foodType = FoodType.valueOf(foodType);
         this.score = 0;
     }
 
@@ -88,6 +91,14 @@ public class Occasion implements DbObject {
 
     public Date getUpdate_time() {
         return update_time;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public String getFoodTypeName() {
+        return foodType.getTypeName();
     }
 
     @Override
